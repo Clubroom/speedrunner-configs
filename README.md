@@ -1,121 +1,184 @@
-# hers-devtool-json
+# 🚀 Questionnaire Speedrunner
 
-Dev-tool / Intake Speedrunner V2 configuration and answer map JSON files.
+A tool for automating medical intake forms on Hims and Hers platforms. The speedrunner supports multiple treatment types and provides an intuitive interface for filling out forms quickly.
 
-## Table of Contents
+## 📋 Table of Contents
 
-- [Project Overview](#project-overview)
-- [How to Use](#how-to-use)
-    - [Loading Default Configurations](#loading-default-configurations)
-    - [Running the Speedrunner](#running-the-speedrunner)
-    - [Creating and Managing Custom Answer Maps](#creating-and-managing-custom-answer-maps)
-- [Working with Data JSON](#working-with-data-json)
-- [Customizing Default Configurations](#customizing-default-configurations)
+- [🎯 Supported Treatments](#-supported-treatments)
+- [🚀 Quick Start](#-quick-start)
+- [🎮 Controls & Buttons](#-controls--buttons)
+- [📖 How to Use](#-how-to-use)
+  - [Loading Default Configurations](#loading-default-configurations)
+  - [Running the Speedrunner](#running-the-speedrunner)
+  - [Creating Custom Answer Maps](#creating-custom-answer-maps)
+- [⚙️ Configuration Management](#️-configuration-management)
+- [🚨 Troubleshooting](#-troubleshooting)
 
----
+## 🎯 Supported Treatments
 
-## Project Overview
+The speedrunner works with these treatment types on both Hims and Hers platforms:
 
-**Intake Speedrunner V2** is a browser-based development utility that speeds up QA and development workflows for medical intake forms. It allows you to automate the process of filling out patient questionnaires by preloading answer maps from JSON configurations. These answer maps can be defaulted by treatment type or fully customized to fit unique testing scenarios.
+- **Weight Management** - `/wm/medical-intake`, `/wm/intake-height-weight`
+- **Mental Health (Psychiatry)** - `/c/mh/p-g`, `/mh/intake`
 
----
+## 🚀 Quick Start
 
-## How to Use
+1. **Go to an intake page** (URL contains "intake", "medical-intake", "intake-height-weight", "/mh/p-g", or "/mh/intake")
+2. **Open Dev tool** - Intake Speedrunner V2
+3. **Load a configuration** - Click `Load Default Config` button
+4. **Click Run** - Auto-fills and advances through the form
 
-### Loading Default Configurations
 
-Loading Default Configurations
-Start a V2 visit and navigate to a medical intake form. These pages typically have URLs that include the word "intake".
+## 🎮 Controls & Buttons
 
-Once on the intake page, click the Load Default PSYCHIATRY Config (or choose WEIGHT_MANAGEMENT, HAIR_LOSS).
+<details>
+<summary><strong>🏃 Action Buttons</strong></summary>
 
-Then click Run, Run Once, or Stop Run depending on what you need.
+| Button | Icon | Description |
+|--------|------|-------------|
+| **Run** | 🏃 | Auto-fills forms and advances through all pages |
+| **Run Once** | 🐢 | Fills only current page |
+| **Stop Run** | 🛑 | Stops the speedrunner |
 
-ℹ️ Speedrunner Unavailable:
-If you are not on a valid intake form page, you’ll see the message:
-"Speedrunner unavailable: This tool works only on intake form pages. Start a v2 visit and go to a URL containing 'intake'."
+</details>
 
-The tool will auto-detect:
+<details>
+<summary><strong>⚙️ Configuration Buttons</strong></summary>
 
-Whether you are on the Hims or Hers domain
+| Button | Description |
+|--------|-------------|
+| **Load Default Config** | Automatically detects treatment type and loads default configuration from repository |
+| **Copy current visit.answers** | Copies answers from current session |
+| **Save Answer Map** | Saves the current configuration to local storage |
+| **Load** | Loads a saved configuration (source and name are automatically updated) |
+| **🗑️** | Deletes a saved configuration |
 
-The correct treatment type
+**Configuration Sources:**
+- ⭐ **Remote** - Default configurations from repository
+- 💾 **Saved** - Configurations saved to local storage
+- 📂 **Uploaded** - Custom uploaded JSON files
+- ✍️ **Manual** - Manually entered configurations
 
-It will then load the appropriate default answer map. Once loaded, the configuration will appear in the Saved answer maps section and its content will populate the text area.
----
+</details>
 
-### Running the Speedrunner
+<details>
+<summary><strong>🔧 Advanced Settings</strong></summary>
 
-You can run the tool once a configuration is loaded into the textarea. The action buttons are enabled only on valid medical intake pages.
+**Optional settings (at least one must be enabled to activate controls):**
+- **File Upload** - Upload custom JSON configuration files (usually best source)
+- **Use smart default answers** - Fallback answers (if enabled) helps with smart filling if flow changed
+- **Generate random answers** - Random answers (if enabled) helps with random filling if flow changed
 
-**Supported Routes by Treatment:**
+**Priority System:**
+- 🥇 **Priority 1**: Remote/Default answers (highest priority)
+- 🥈 **Priority 2**: Fallback answers
+- 🥉 **Priority 3**: Intelligent detection based on question content (in progress)
+- 🎲 **Priority 4**: Random fallback (lowest priority)
 
-- `WEIGHT_MANAGEMENT`: `/wm/medical-intake?offset={...}`
-- `PSYCHIATRY`: `/c/mh/p-g?offset={...}`
-- `HAIR_LOSS`: `/hl/intake-step?offset={...}`
+</details>
 
-**Controls:**
+<details>
+<summary><strong>📁 Folding Options</strong></summary>
 
-- 🏃 **Run**: Auto-fill and auto-advance through the form.
-- 🐢 **Run Once**: Fill only the current page.
-- 🛑 **Stop Run**: Interrupt execution.
+**Interface Folding:**
+- **Folding feature** - Helps improve visibility by collapsing/expanding sections
+- **Waiting state** - Shows when folding option is available but not active
+- **Active state** - Automatically changes from waiting to active when available
+- **Run compatibility** - Works seamlessly with the Run functionality
 
----
+**Benefits:**
+- **Space optimization** - Reduces screen clutter when folded
+- **Better visibility** - Easier to see more content when sections are collapsed
+- **Improved workflow** - Maintains functionality while providing cleaner interface
 
-### Creating and Managing Custom Answer Maps
+</details>
 
-1. Click **Copy current `visit.answers`** to grab answers from your session.
-2. Paste into the text area and name the configuration.
-3. Click **Save Answer Map** to store in browser local storage.
-4. Use saved map buttons to **load** or **delete** them.
+## 📖 How to Use
 
----
+<details>
+<summary><strong>1️⃣ Loading Default Configurations</strong></summary>
 
-## Working with Data JSON
+1. **Navigate to an intake page** (URL contains "intake", "medical-intake", "intake-height-weight", "/mh/p-g", or "/mh/intake")
+2. **Open Dev tool** - Intake Speedrunner V2
+3. **Click** `Load Default Config` - Automatically detects treatment type
+4. **Click Run** to start auto-filling
 
-All configuration files reside under:
-`packages/web/components/dev-menu/data/`
+> ℹ️ **Note**: Tool only works on intake form pages (URLs containing "intake", "medical-intake", "intake-height-weight", "/mh/p-g", or "/mh/intake"). The speedrunner automatically detects Hims/Hers and treatment type, then loads the appropriate configuration from repository.
 
-They are named by treatment type and brand:
+</details>
 
-- `weight_management_hims.json`
-- `weight_management_hers.json`
-- `psychiatry_hims.json`
-- `psychiatry_hers.json`
-- `hair_loss_hims.json`
-- `hair_loss_hers.json`
+<details>
+<summary><strong>2️⃣ Creating Custom Answer Maps</strong></summary>
 
-Each JSON file supports **multiple named answer maps**, structured like this:
+1. **Copy current session** - Click `Copy current visit.answers`
+2. **Paste and edit** in the text area
+3. **Name your configuration** and click `Save Answer Map`
+4. **Manage saved configurations** using Load/Delete buttons
 
+</details>
+
+## ⚙️ Configuration Management
+
+<details>
+<summary><strong>📝 JSON Configuration Format</strong></summary>
+
+**Input Field Format (what you enter):**
 ```json
 {
-  "happy_path_v1": {
+  "question_id_1": "answer_id_a",
+  "question_id_2": "answer_id_b"
+}
+```
+
+**File/Git Format (with smart detection):**
+```json
+{
+  "configuration_name": {
     "question_id_1": "answer_id_a",
     "question_id_2": "answer_id_b"
-  },
-  "edge_case_v1": {
-    "question_id_1": "answer_id_c",
-    "question_id_2": "answer_id_d"
   }
 }
 ```
 
-## Customizing Default Configurations
+**Smart Detection:**
+- **Single configuration**: Automatically selects it and places the inner object in the textarea
+- **Multiple configurations**: Prompts user to select which scenario to use
+- **The speedrunner always uses the flat object in the textarea as the answer map**
 
-To extend or customize configurations for Hims or Hers:
+</details>
 
-1. Open the relevant `.json` file inside the `data/` directory.
-2. Add a new key-value object for your test case. Use a clear name, like `smoke_test_01`.
-3. Fill it with the desired answers using the `question_id: answer_id` format.
+## 🚨 Troubleshooting
 
-### Example
+<details>
+<summary><strong>❓ Common Issues</strong></summary>
 
-```json
-{
-  "smoke_test_01": {
-    "q1": "a1",
-    "q2": "a2",
-    "q3": "a3"
-  }
-}
+**"Speedrunner unavailable" Message**
+- Navigate to a valid intake form page (URL contains "intake", "medical-intake", "intake-height-weight", "/mh/p-g", or "/mh/intake")
+
+**Configuration Not Loading**
+- Verify JSON syntax is valid
+- Try loading a default configuration first
+
+**Speedrunner Stops Unexpectedly**
+- Try "Run Once" to test individual pages
+- Check browser console for error messages
+- Enable fallback options if the form flow has changed and some questions are missing
+
+**Performance Issues**
+- Clear browser cache and local storage
+
+</details>
+
+<details>
+<summary><strong>🔍 Debug Mode</strong></summary>
+
+Enable debug logging in browser developer tools:
+```javascript
+localStorage.setItem('speedrunner_debug', 'true');
 ```
+
+</details>
+
+---
+
+**Need help?** Check the troubleshooting section above or reach out to the development team.
